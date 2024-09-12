@@ -1,4 +1,6 @@
 import {Box, Checkbox, FormControlLabel} from '@mui/material'
+import CircleIcon from '@mui/icons-material/Circle'
+import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined'
 import * as React from 'react'
 import {useState} from 'react'
 
@@ -28,10 +30,23 @@ export default function ColorFilter() {
         key={color.color}
         control={
           <Checkbox
+            icon={<CircleIcon style={{color: color.color}} />}
             checked={selectedColors.includes(color.color)}
             onChange={handleChange}
             value={color.color}
-            style={{color: color.color}}
+            // style={{color: color.color}}
+            checkedIcon={
+              <CircleIcon
+                style={{color: color.color}}
+                sx={{
+                  padding: '1px',
+                  borderColor: 'black',
+                  borderWidth: '1px',
+                  borderStyle: 'solid',
+                  borderRadius: '50%',
+                }}
+              />
+            }
             size='large'
           />
         }
