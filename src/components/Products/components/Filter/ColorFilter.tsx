@@ -1,14 +1,18 @@
-import {Box, Checkbox, FormControlLabel} from '@mui/material'
+import {Box, Checkbox, FormControlLabel, Typography} from '@mui/material'
 import CircleIcon from '@mui/icons-material/Circle'
-import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined'
 import * as React from 'react'
 import {useState} from 'react'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 export interface IColorFilterProps {}
-
 export default function ColorFilter() {
   const [selectedColors, setSelectedColors] = useState<string[]>([])
+  const [visibleColors, setVisibleColors] = useState(4)
 
+  const handleShowMoreColors = () => {
+    setVisibleColors((prev) => (prev === 4 ? colors.length : 4))
+  }
   const colors = [
     {name: 'Đen', color: 'black'},
     {name: 'Xanh đen', color: 'darkblue'},
@@ -24,34 +28,68 @@ export default function ColorFilter() {
       checked ? [...prev, value] : prev.filter((color) => color !== value),
     )
   }
-  return colors.map((color) => (
+  return (
     <Box>
-      <FormControlLabel
-        key={color.color}
-        control={
-          <Checkbox
-            icon={<CircleIcon style={{color: color.color}} />}
-            checked={selectedColors.includes(color.color)}
-            onChange={handleChange}
-            value={color.color}
-            // style={{color: color.color}}
-            checkedIcon={
-              <CircleIcon
-                style={{color: color.color}}
-                sx={{
-                  padding: '1px',
-                  borderColor: 'black',
-                  borderWidth: '1px',
-                  borderStyle: 'solid',
-                  borderRadius: '50%',
-                }}
+      {colors.slice(0, visibleColors).map((color) => (
+        <Box key={color.color}>
+          <FormControlLabel
+            key={color.color}
+            control={
+              <Checkbox
+                icon={<CircleIcon style={{color: color.color}} />}
+                checked={selectedColors.includes(color.color)}
+                onChange={handleChange}
+                value={color.color}
+                // style={{color: color.color}}
+                checkedIcon={
+                  <CircleIcon
+                    style={{color: color.color}}
+                    sx={{
+                      padding: '1px',
+                      borderColor: 'black',
+                      borderWidth: '1px',
+                      borderStyle: 'solid',
+                      borderRadius: '50%',
+                    }}
+                  />
+                }
+                size='large'
               />
             }
-            size='large'
+            label={color.name}
           />
-        }
-        label={color.name}
-      />
+        </Box>
+      ))}
+      {
+        <Typography
+          onClick={handleShowMoreColors}
+          sx={{
+            display: 'flex',
+
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '1.2rem',
+            cursor: 'pointer',
+            color: 'primary.main',
+            marginTop: '8px',
+            ':hover': {
+              textDecoration: 'underline',
+            },
+          }}
+        >
+          {visibleColors === 4 ? (
+            <>
+              Xem thêm
+              <KeyboardArrowDownIcon />
+            </>
+          ) : (
+            <>
+              Rút gọn
+              <KeyboardArrowUpIcon />
+            </>
+          )}
+        </Typography>
+      }
     </Box>
-  ))
+  )
 }

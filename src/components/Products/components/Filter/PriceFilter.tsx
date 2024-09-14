@@ -5,10 +5,13 @@ import Slider from '@mui/material/Slider'
 import Typography from '@mui/material/Typography'
 import {useState} from 'react'
 
-const minDistance = 1000000 // Khoảng cách tối thiểu 1 triệu đồng
-const maxPrice = 10000000 // Giá tối đa là 10 triệu đồng
+const minDistance = 1000000 // Minimum distance 1 million VND
+const maxPrice = 10000000 // Maximum price is 10 million VND
+interface IPriceFilterProps {
+  onChange: (newPrice: object) => void
+}
 
-export default function PriceFilter() {
+export default function PriceFilter({onChange}: IPriceFilterProps) {
   const [priceRange, setPriceRange] = useState<number[]>([0, maxPrice])
 
   const handlePriceChange = (event: Event, newValue: number | number[], activeThumb: number) => {
@@ -23,9 +26,10 @@ export default function PriceFilter() {
   }
   const handleButtonClick = () => {
     const selectedRange = {
-      minPrice: priceRange[0],
-      maxPrice: priceRange[1],
+      _price_gte: priceRange[0],
+      _price_lte: priceRange[1],
     }
+    onChange(selectedRange)
     console.log(selectedRange)
   }
   return (
@@ -39,7 +43,7 @@ export default function PriceFilter() {
         valueLabelDisplay='auto'
         min={0}
         max={maxPrice}
-        step={500000} // Bước nhảy 500 nghìn đồng
+        step={500000}
         disableSwap
       />
       <Typography fontSize={'1.2rem'}>

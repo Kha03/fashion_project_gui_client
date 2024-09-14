@@ -4,15 +4,18 @@ import PriceFilter from '../Filter/PriceFilter'
 import ColorFilter from '../Filter/ColorFilter'
 
 export interface IProductFilterProps {
-  onFilterChange: object
+  onChange: (newFilter: object) => void
 }
 
-export default function ProductFilter({onFilterChange}: IProductFilterProps) {
+export default function ProductFilter({onChange}: IProductFilterProps) {
+  const handleChange = (newCategory: object) => {
+    onChange(newCategory)
+  }
   return (
     <Box padding={'15px'}>
-      <CategoryFilter />
+      <CategoryFilter onChange={handleChange} />
       <hr />
-      <PriceFilter />
+      <PriceFilter onChange={handleChange} />
       <hr />
       <ColorFilter />
     </Box>
