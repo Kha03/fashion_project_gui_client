@@ -51,7 +51,8 @@ export default function CategoryFilter({onChange}: ICategoryFilterProps) {
             control={<Radio />}
             label={category.name}
             sx={{
-              '& .MuiRadio-root': {display: 'none'}, // Hide the radio icon
+              mb: 1,
+              '& .MuiRadio-root': {display: 'none'},
               '& .MuiFormControlLabel-label': {
                 color: selectedCategory == category.name ? '#2196f3' : 'inherit',
                 fontSize: '1.5rem',

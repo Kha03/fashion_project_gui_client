@@ -32,11 +32,10 @@ export default function ListProduct() {
       _limit: params._limit || 8,
     }
   }, [location.search])
-  const handleFilterChange = (newFilter: object) => {
-    const newQuery = {
-      ...queryParams,
-      ...newFilter,
-    }
+  const handleFilterChange = (newFilter: object | string[]) => {
+    const newQuery = Array.isArray(newFilter)
+      ? {...queryParams, _color: [...newFilter]}
+      : {...queryParams, ...newFilter}
     console.log(newQuery)
     history({search: queryString.stringify(newQuery)})
   }
@@ -71,19 +70,10 @@ export default function ListProduct() {
                 <Pagination
                   count={Math.ceil(pagination._total / pagination._limit)}
                   size='medium'
+                  color='primary'
                   sx={{
                     '& .MuiPaginationItem-text': {
                       fontSize: '1.4rem',
-                      color: '#000',
-                      backgroundColor: '#fff',
-                    },
-                    '& .MuiPaginationItem-root:hover': {
-                      backgroundColor: '#ddd',
-                      color: '#000',
-                    },
-                    '& .Mui-selected': {
-                      color: '#fff',
-                      backgroundColor: '#000',
                     },
                   }}
                   onChange={handlePageChange}
