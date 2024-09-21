@@ -146,10 +146,114 @@ const product = [
       },
     ],
   },
+  {
+    productID: 2,
+    name: 'name',
+    description: 'description',
+    createdDate: '12/2/2021',
+    originalPrice: 350000,
+    image: './src/assets/img/product_1.png',
+    productVariants: [
+      {
+        productVariantID: 1,
+        sku: 'sku',
+        size: 'M',
+        color: 'Đỏ',
+        productID: 'productID',
+        subImage: ['./src/assets/img/product_6.png'],
+      },
+      {
+        productVariantID: 2,
+        sku: 'sku',
+        size: 'L',
+        color: 'Hồng',
+        productID: 'productID',
+        subImage: ['./src/assets/img/product_5.png'],
+      },
+    ],
+  },
+  {
+    productID: 2,
+    name: 'name',
+    description: 'description',
+    createdDate: '12/2/2021',
+    originalPrice: 350000,
+    image: './src/assets/img/product_1.png',
+    productVariants: [
+      {
+        productVariantID: 1,
+        sku: 'sku',
+        size: 'M',
+        color: 'Đỏ',
+        productID: 'productID',
+        subImage: ['./src/assets/img/product_6.png'],
+      },
+      {
+        productVariantID: 2,
+        sku: 'sku',
+        size: 'L',
+        color: 'Hồng',
+        productID: 'productID',
+        subImage: ['./src/assets/img/product_5.png'],
+      },
+    ],
+  },
+  {
+    productID: 2,
+    name: 'name',
+    description: 'description',
+    createdDate: '12/2/2021',
+    originalPrice: 350000,
+    image: './src/assets/img/product_1.png',
+    productVariants: [
+      {
+        productVariantID: 1,
+        sku: 'sku',
+        size: 'M',
+        color: 'Đỏ',
+        productID: 'productID',
+        subImage: ['./src/assets/img/product_6.png'],
+      },
+      {
+        productVariantID: 2,
+        sku: 'sku',
+        size: 'L',
+        color: 'Hồng',
+        productID: 'productID',
+        subImage: ['./src/assets/img/product_5.png'],
+      },
+    ],
+  },
+  {
+    productID: 2,
+    name: 'name',
+    description: 'description',
+    createdDate: '12/2/2021',
+    originalPrice: 350000,
+    image: './src/assets/img/product_1.png',
+    productVariants: [
+      {
+        productVariantID: 1,
+        sku: 'sku',
+        size: 'M',
+        color: 'Đỏ',
+        productID: 'productID',
+        subImage: ['./src/assets/img/product_6.png'],
+      },
+      {
+        productVariantID: 2,
+        sku: 'sku',
+        size: 'L',
+        color: 'Hồng',
+        productID: 'productID',
+        subImage: ['./src/assets/img/product_5.png'],
+      },
+    ],
+  },
 ]
 export default function ProductList() {
   return (
-    <Grid2 container justifyContent='space-between'>
+    <Grid2 container justifyContent={'flex-start'}>
       {product.map((item, index) => (
         <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
           <ProductItem item={item} size='small' />

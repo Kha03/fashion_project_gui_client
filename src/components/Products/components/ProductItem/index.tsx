@@ -29,9 +29,9 @@ export default function ProductItem({item, size}: IProductItemProps & {size?: st
 
   const dimensions =
     size === 'small' ? {width: '200px', height: '300px'} : {width: '277px', height: '367px'}
-  const sizeBox = size === 'small' ? {width: '235px'} : {width: '308px'}
+  const sizeBox = size === 'small' ? {width: '240px'} : {width: '308px'}
   return (
-    <Box width={sizeBox} padding={'0 15px'}>
+    <Box width={sizeBox} padding={'0 15px'} margin={'18px 0'}>
       <a href='#!'>
         <Box className='product-img__container' width={dimensions.width} height={dimensions.height}>
           <img src={currentImage} alt='' className='product-img product-img__main' />

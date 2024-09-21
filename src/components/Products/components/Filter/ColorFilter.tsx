@@ -1,7 +1,7 @@
 import {Box, Checkbox, FormControlLabel, Typography} from '@mui/material'
 import CircleIcon from '@mui/icons-material/Circle'
 import * as React from 'react'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
@@ -29,10 +29,12 @@ export default function ColorFilter({onChange}: IColorFilterProps) {
     setSelectedColors((prev) =>
       checked ? [...prev, value] : prev.filter((color) => color !== value),
     )
-    onChange(
-      checked ? [...selectedColors, value] : selectedColors.filter((color) => color !== value),
-    )
   }
+
+  useEffect(() => {
+    onChange(selectedColors)
+  }, [selectedColors])
+
   return (
     <Box>
       {colors.slice(0, visibleColors).map((color) => (

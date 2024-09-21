@@ -1,11 +1,11 @@
-import {Box, Container, Paper} from '@mui/material'
+import {Box, Container, Pagination, Paper} from '@mui/material'
 import Grid2 from '@mui/material/Unstable_Grid2'
+import queryString from 'query-string'
+import {useMemo, useState} from 'react'
+import {useLocation, useNavigate} from 'react-router-dom'
 import SortProductFilter from '../components/Filter/SortProductFilter'
 import ProductFilter from '../components/ProductFilter/ProductFilter'
 import ProductList from '../components/ProductList/ProductList'
-import queryString from 'query-string'
-import {useLocation, useNavigate} from 'react-router-dom'
-import {useMemo} from 'react'
 
 export default function ListProduct() {
   interface params {
@@ -19,13 +19,17 @@ export default function ListProduct() {
   }
   const history = useNavigate()
   const location = useLocation()
+  const [pagination, setPagination] = useState({
+    _page: 1,
+    _limit: 8,
+    _total: 100,
+  })
   const queryParams = useMemo(() => {
     const params = queryString.parse(location.search) as params
     return {
       ...params,
       _page: params._page || 1,
-      _limit: params._limit || 9,
-      _sort: params._sort || 'salePrice:ASC',
+      _limit: params._limit || 8,
     }
   }, [location.search])
   const handleFilterChange = (newFilter: object) => {
@@ -43,6 +47,13 @@ export default function ListProduct() {
     }
     history({search: queryString.stringify(newQuery)})
   }
+  const handlePageChange = (e: object, page: number) => {
+    const newQuery = {
+      ...queryParams,
+      _page: page,
+    }
+    history({search: queryString.stringify(newQuery)})
+  }
   return (
     <Box sx={{flexGrow: 1}} mt={'65px'}>
       <Container maxWidth={'lg'}>
@@ -56,6 +67,28 @@ export default function ListProduct() {
                 <SortProductFilter onChange={handleSortChange} />
               </Box>
               <ProductList />
+              <Box display='flex' justifyContent='center' marginTop={2}>
+                <Pagination
+                  count={Math.ceil(pagination._total / pagination._limit)}
+                  size='medium'
+                  sx={{
+                    '& .MuiPaginationItem-text': {
+                      fontSize: '1.4rem',
+                      color: '#000',
+                      backgroundColor: '#fff',
+                    },
+                    '& .MuiPaginationItem-root:hover': {
+                      backgroundColor: '#ddd',
+                      color: '#000',
+                    },
+                    '& .Mui-selected': {
+                      color: '#fff',
+                      backgroundColor: '#000',
+                    },
+                  }}
+                  onChange={handlePageChange}
+                />
+              </Box>
             </Paper>
           </Grid2>
         </Grid2>
