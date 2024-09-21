@@ -1,7 +1,9 @@
 import {Box, FormControl, MenuItem, Select, SelectChangeEvent, Typography} from '@mui/material'
 import {useState} from 'react'
-
-export default function SortProductFilter() {
+export interface ISortProductFilterProps {
+  onChange: (newFilter: string) => void
+}
+export default function SortProductFilter({onChange}: ISortProductFilterProps) {
   const valueSort = {
     'name-asc': 'Tên A-Z',
     'name-desc': 'Tên Z-A',
@@ -12,6 +14,9 @@ export default function SortProductFilter() {
 
   const handleChange = (event: SelectChangeEvent) => {
     setSortProduct(event.target.value as string)
+    if (onChange) {
+      onChange(event.target.value as string)
+    }
   }
   return (
     <Box sx={{minWidth: 200, display: 'flex', alignItems: 'center'}}>

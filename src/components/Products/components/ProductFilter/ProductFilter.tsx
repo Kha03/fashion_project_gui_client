@@ -8,7 +8,7 @@ export interface IProductFilterProps {
 }
 
 export default function ProductFilter({onChange}: IProductFilterProps) {
-  const handleChange = (newCategory: object) => {
+  const handleChange = (newCategory: object | string[]) => {
     onChange(newCategory)
   }
   return (
@@ -17,7 +17,7 @@ export default function ProductFilter({onChange}: IProductFilterProps) {
       <hr />
       <PriceFilter onChange={handleChange} />
       <hr />
-      <ColorFilter />
+      <ColorFilter onChange={handleChange} />
     </Box>
   )
 }

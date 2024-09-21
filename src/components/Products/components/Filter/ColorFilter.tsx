@@ -5,8 +5,10 @@ import {useState} from 'react'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-export interface IColorFilterProps {}
-export default function ColorFilter() {
+export interface IColorFilterProps {
+  onChange: (newColor: object | string[]) => void
+}
+export default function ColorFilter({onChange}: IColorFilterProps) {
   const [selectedColors, setSelectedColors] = useState<string[]>([])
   const [visibleColors, setVisibleColors] = useState(4)
 
@@ -26,6 +28,9 @@ export default function ColorFilter() {
     const {checked, value} = event.target
     setSelectedColors((prev) =>
       checked ? [...prev, value] : prev.filter((color) => color !== value),
+    )
+    onChange(
+      checked ? [...selectedColors, value] : selectedColors.filter((color) => color !== value),
     )
   }
   return (

@@ -36,6 +36,13 @@ export default function ListProduct() {
     console.log(newQuery)
     history({search: queryString.stringify(newQuery)})
   }
+  const handleSortChange = (newSort: string) => {
+    const newQuery = {
+      ...queryParams,
+      _sort: newSort,
+    }
+    history({search: queryString.stringify(newQuery)})
+  }
   return (
     <Box sx={{flexGrow: 1}} mt={'65px'}>
       <Container maxWidth={'lg'}>
@@ -46,7 +53,7 @@ export default function ListProduct() {
           <Grid2 xs={10}>
             <Paper sx={{padding: '8px 0', marginTop: '12px'}}>
               <Box marginBottom={2} marginRight={2} display='flex' justifyContent='flex-end'>
-                <SortProductFilter />
+                <SortProductFilter onChange={handleSortChange} />
               </Box>
               <ProductList />
             </Paper>
