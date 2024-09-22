@@ -5,6 +5,7 @@ import {Route, Routes} from 'react-router-dom'
 import ListProduct from './components/Products/page/ListProduct'
 import Home from './components/Home/components/Home'
 import themeStyle from './common/themeStyle'
+import ProductDetail from './components/Products/page/ProductDetail'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path='*' element={<Home />} />
           <Route path='/products' element={<ListProduct />} />
+          <Route path='/product' element={<ProductDetail idProduct='1' />} />
         </Routes>
       </Box>
     </ThemeProvider>
