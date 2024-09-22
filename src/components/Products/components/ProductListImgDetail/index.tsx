@@ -1,13 +1,18 @@
 import {Box} from '@mui/material'
-import {useRef, useState} from 'react'
+import {useEffect, useRef, useState} from 'react'
 import {useDraggable} from 'react-use-draggable-scroll'
 
 export interface IProductListImgDetailProps {
   listImg?: string[]
   onChange?: (img: string) => void
+  currentIndex?: number
 }
 
-export default function ProductListImgDetail({listImg, onChange}: IProductListImgDetailProps) {
+export default function ProductListImgDetail({
+  listImg,
+  onChange,
+  currentIndex,
+}: IProductListImgDetailProps) {
   const [selectedImg, setSelectedImg] = useState<string | null>(null)
   const ref = useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>
   const {events} = useDraggable(ref)
@@ -17,7 +22,11 @@ export default function ProductListImgDetail({listImg, onChange}: IProductListIm
       onChange(img)
     }
   }
-
+  useEffect(() => {
+    if (listImg && listImg[currentIndex || 0]) {
+      setSelectedImg(listImg[currentIndex || 0])
+    }
+  }, [currentIndex, listImg])
   const images = listImg || []
 
   return (

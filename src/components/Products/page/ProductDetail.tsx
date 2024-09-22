@@ -70,9 +70,21 @@ export default function ProductDetail({idProduct}: IProductDetailProps) {
     ],
   }
   const [img, setImg] = useState<string>(product.image)
-  const subImages = product.productVariants.flatMap((item) => item.subImage)
+  const subImages = [product.image, ...product.productVariants.flatMap((item) => item.subImage)]
   const hanleChangeImg = (img: string) => {
     setImg(img)
+  }
+  const [currentIndex, setCurrentIndex] = useState<number>(0)
+  const handlePrev = () => {
+    const newIndex = (currentIndex - 1 + subImages.length) % subImages.length
+    setCurrentIndex(newIndex)
+    setImg(subImages[newIndex])
+  }
+
+  const handleNext = () => {
+    const newIndex = (currentIndex + 1) % subImages.length
+    setCurrentIndex(newIndex)
+    setImg(subImages[newIndex])
   }
   useEffect(() => {
     console.log(idProduct)
@@ -83,8 +95,12 @@ export default function ProductDetail({idProduct}: IProductDetailProps) {
         <Grid2 container>
           <Grid2 xs={6}>
             <Box display={'flex'} justifyContent={'center'}>
-              <ProductListImgDetail listImg={subImages} onChange={hanleChangeImg} />
-              <ProductImageDetail url={img} />
+              <ProductListImgDetail
+                listImg={subImages}
+                onChange={hanleChangeImg}
+                currentIndex={currentIndex}
+              />
+              <ProductImageDetail url={img} onPrev={handlePrev} onNext={handleNext} />
             </Box>
           </Grid2>
           <Grid2 xs={6}></Grid2>
