@@ -1,4 +1,5 @@
 import {formatCurrency} from '@/common'
+import CouponCommon from '@/components/Coupon/CouponCommon'
 import useUniqueProductVariantsByColor from '@/hooks/useUniqueProductVariantsByColor'
 import {Product} from '@/model'
 import {Box, Typography} from '@mui/material'
@@ -38,8 +39,13 @@ export default function ProductDetailInfo({item}: IProductDetailInfoProps) {
         </Typography>
       </Box>
       <Typography fontSize={'1.4rem'} mt={1} color={'#757575'}>
-        (Tiết kiệm {formatCurrency(item.originalPrice - item.discountedPrice)})
+        {item.discountedPrice
+          ? `Tiết kiệm ${formatCurrency(item.originalPrice - item.discountedPrice)}`
+          : null}
       </Typography>
+      <Box mt={5}>
+        <CouponCommon />
+      </Box>
     </Box>
   )
 }
