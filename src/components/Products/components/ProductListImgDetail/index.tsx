@@ -23,7 +23,6 @@ export default function ProductListImgDetail({
   }
   useEffect(() => {
     if (listImg && listImg[currentIndex || 0]) {
-      console.log('hiiii')
       setSelectedImg(listImg[currentIndex || 0])
     }
   }, [currentIndex, listImg])

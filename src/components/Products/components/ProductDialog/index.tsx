@@ -112,7 +112,7 @@ export default function ProductDialog({item, open, handleClose}: IProductDialog)
               >
                 {item.discountedPrice ? formatCurrency(item.originalPrice) : null}
               </Typography>
-              <Typography component={'span'} ml={1} sx={{fontSize: '1.4rem', color: 'red'}}>
+              <Typography component={'span'} ml={1} sx={{fontSize: '1.4rem', color: '#f44336'}}>
                 {item.discountPercentage ? `-${item.discountPercentage * 100}%` : null}
               </Typography>
             </Box>

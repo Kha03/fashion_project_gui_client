@@ -3,6 +3,7 @@ import Grid2 from '@mui/material/Unstable_Grid2'
 import {useEffect, useState} from 'react'
 import ProductImageDetail from '../components/ProductImageDetail'
 import ProductListImgDetail from '../components/ProductListImgDetail'
+import ProductDetailInfo from '../components/ProductDetailInfo'
 
 export interface IProductDetailProps {
   idProduct: string
@@ -95,7 +96,7 @@ export default function ProductDetail({idProduct}: IProductDetailProps) {
       <Container maxWidth={'lg'}>
         <Grid2 container>
           <Grid2 xs={6}>
-            <Box display={'flex'} justifyContent={'center'}>
+            <Box display={'flex'} justifyContent={'space-between'}>
               <ProductListImgDetail
                 listImg={subImages}
                 onChange={hanleChangeImg}
@@ -104,7 +105,9 @@ export default function ProductDetail({idProduct}: IProductDetailProps) {
               <ProductImageDetail url={img} onPrev={handlePrev} onNext={handleNext} />
             </Box>
           </Grid2>
-          <Grid2 xs={6}></Grid2>
+          <Grid2 xs={6}>
+            <ProductDetailInfo item={product} />
+          </Grid2>
         </Grid2>
       </Container>
     </Box>
