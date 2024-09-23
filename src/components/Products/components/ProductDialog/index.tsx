@@ -12,6 +12,7 @@ import {useState} from 'react'
 import {useDispatch} from 'react-redux'
 import FromBuy from '../FormBuy'
 import './style.scss'
+import useUniqueProductVariantsByColor from '@/hooks/useUniqueProductVariantsByColor'
 
 const BootstrapDialog = styled(Dialog)(({theme}) => ({
   '& .MuiDialogContent-root': {
@@ -30,9 +31,7 @@ export interface IProductDialog {
 }
 
 export default function ProductDialog({item, open, handleClose}: IProductDialog) {
-  const productVariant = item.productVariants?.filter(
-    (variant, index, self) => index === self.findIndex((v) => v.color === variant.color),
-  )
+  const productVariant = useUniqueProductVariantsByColor(item.productVariants)
   const [currentColor, setCurrentColor] = useState('')
   const [currentImage, setCurrentImage] = useState(item.productVariants?.[0].subImage?.[0])
   const handleChangeImage = (indexVariant: number, color: string) => {
@@ -149,14 +148,8 @@ export default function ProductDialog({item, open, handleClose}: IProductDialog)
                   variant={selectedSize === variant.size ? 'contained' : 'outlined'}
                   sx={{
                     fontSize: '1.2rem',
-                    background: selectedSize === variant.size ? 'black' : 'white',
-                    color: selectedSize === variant.size ? 'white' : 'black',
-                    '&:hover': {
-                      background: selectedSize === variant.size ? 'black' : 'white',
-                      color: selectedSize === variant.size ? 'white' : 'black',
-                    },
                   }}
-                  color='inherit'
+                  color='primary'
                 >
                   {variant.size}
                 </Button>

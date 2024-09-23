@@ -71,7 +71,8 @@ export default function ProductDetail({idProduct}: IProductDetailProps) {
   }
   const [img, setImg] = useState<string>(product.image)
   const subImages = [product.image, ...product.productVariants.flatMap((item) => item.subImage)]
-  const hanleChangeImg = (img: string) => {
+  const hanleChangeImg = (img: string, index: number) => {
+    setCurrentIndex(index)
     setImg(img)
   }
   const [currentIndex, setCurrentIndex] = useState<number>(0)

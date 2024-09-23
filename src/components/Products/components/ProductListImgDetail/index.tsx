@@ -4,7 +4,7 @@ import {useDraggable} from 'react-use-draggable-scroll'
 
 export interface IProductListImgDetailProps {
   listImg?: string[]
-  onChange?: (img: string) => void
+  onChange?: (img: string, index: number) => void
   currentIndex?: number
 }
 
@@ -16,14 +16,14 @@ export default function ProductListImgDetail({
   const [selectedImg, setSelectedImg] = useState<string | null>(null)
   const ref = useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>
   const {events} = useDraggable(ref)
-  const handleClick = (img: string) => {
-    setSelectedImg(img)
+  const handleClick = (img: string, index: number) => {
     if (onChange) {
-      onChange(img)
+      onChange(img, index)
     }
   }
   useEffect(() => {
     if (listImg && listImg[currentIndex || 0]) {
+      console.log('hiiii')
       setSelectedImg(listImg[currentIndex || 0])
     }
   }, [currentIndex, listImg])
@@ -44,7 +44,7 @@ export default function ProductListImgDetail({
           key={index}
           width={'100%'}
           height={'100px'}
-          onClick={() => handleClick(img)}
+          onClick={() => handleClick(img, index)}
           sx={{
             cursor: 'pointer',
             p: '3px',
