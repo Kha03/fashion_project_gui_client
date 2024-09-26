@@ -31,7 +31,7 @@ export default function Coupon() {
   return (
     <Box mt={9}>
       <Container>
-        <Grid container spacing={2} justifyContent='space-between'>
+        <Grid container spacing={1} justifyContent='space-between'>
           {couponList.map((item, index) => (
             <Grid item xs={12} sm={12} md={6} lg={3} key={item.title}>
               <CouponItem item={item} index={index} />

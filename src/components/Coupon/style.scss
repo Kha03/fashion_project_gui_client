@@ -57,13 +57,13 @@
 }
 .coupon-detail {
   position: absolute;
-  background: #ffffff;
+  background: #fff;
   border-radius: 15px;
   overflow: hidden;
   border: 1px solid #ccc;
   width: 300px;
   display: none; // Ensure the element is visible
   top: 0;
-  right: 0;
-  z-index: 10; // Ensure it has a higher z-index
+  right: 27px;
+  z-index: 9000;
 }

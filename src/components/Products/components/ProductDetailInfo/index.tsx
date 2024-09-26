@@ -4,6 +4,7 @@ import useUniqueProductVariantsByColor from '@/hooks/useUniqueProductVariantsByC
 import {Product} from '@/model'
 import {Box, Typography} from '@mui/material'
 import * as React from 'react'
+import CodeCouponGroup from './CodeCouponGroup'
 
 export interface IProductDetailInfoProps {
   item: Product
@@ -45,6 +46,9 @@ export default function ProductDetailInfo({item}: IProductDetailInfoProps) {
       </Typography>
       <Box mt={5}>
         <CouponCommon />
+      </Box>
+      <Box mt={2}>
+        <CodeCouponGroup codes={['ABC123', 'DEF456', 'GHI789']} />
       </Box>
     </Box>
   )

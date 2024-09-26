@@ -24,8 +24,8 @@ const Item = styled(Paper)(({theme}) => ({
 }))
 export default function PoliciesItem({polices}: IPoliciesItem) {
   return (
-    <Box sx={{flexGrow: 1, mt: 2}}>
-      <Grid container spacing={5}>
+    <Box sx={{flexGrow: 1}}>
+      <Grid container spacing={2}>
         {polices.map((item, index) => (
           <Grid item xs={12} sm={12} md={6} lg={3} key={item.title}>
             <Item elevation={2}>
