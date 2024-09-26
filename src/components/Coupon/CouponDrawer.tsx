@@ -57,7 +57,9 @@ export default function CopuonDrawer({open, onClose}: ICopuonDrawerProps) {
           }}
         >
           {couponList.map((item, index) => (
-            <CouponItem item={item} index={index} />
+            <Box key={item.id}>
+              <CouponItem item={item} index={index} />
+            </Box>
           ))}
         </Box>
       </Box>

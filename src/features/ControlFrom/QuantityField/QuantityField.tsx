@@ -52,7 +52,7 @@ function QuantityField({name, label, form}: QuantityFieldProps) {
               sx={{
                 width: '100px',
                 textAlign: 'center',
-                '& .MuiInputBase-input': {fontSize: '1.2rem', color: '#000'},
+                '& .MuiInputBase-input': {fontSize: '1.4rem', color: '#000'},
               }}
               variant='standard'
               margin='none'

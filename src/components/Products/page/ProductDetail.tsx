@@ -4,6 +4,7 @@ import {useEffect, useState} from 'react'
 import ProductImageDetail from '../components/ProductImageDetail'
 import ProductListImgDetail from '../components/ProductListImgDetail'
 import ProductDetailInfo from '../components/ProductDetailInfo'
+import useUniqueProductVariantsByColor from '@/hooks/useUniqueProductVariantsByColor'
 
 export interface IProductDetailProps {
   idProduct: string
@@ -50,7 +51,12 @@ export default function ProductDetail({idProduct}: IProductDetailProps) {
         size: 'XL',
         color: 'Đen',
         productID: 'productID',
-        subImage: ['./src/assets/img/product_3.png'],
+        subImage: [
+          './src/assets/img/product_3.png',
+          './src/assets/img/product_3.png',
+          './src/assets/img/product_3.png',
+          './src/assets/img/product_3.png',
+        ],
       },
       {
         productVariantID: 5,
@@ -71,7 +77,25 @@ export default function ProductDetail({idProduct}: IProductDetailProps) {
     ],
   }
   const [img, setImg] = useState<string>(product.image)
-  const subImages = [product.image, ...product.productVariants.flatMap((item) => item.subImage)]
+  const subImages = [
+    ...new Set([product.image, ...product.productVariants.flatMap((item) => item.subImage)]),
+  ]
+  const uniColorImg = useUniqueProductVariantsByColor(product.productVariants)
+  const subUniColorImg = uniColorImg.map((variant) => {
+    // find subImage first
+    const subImage = variant.subImage ? variant.subImage[0] : ''
+
+    // find index of subImage in subImages
+    const index = subImages.findIndex((img) => img === subImage)
+
+    // create new object
+    return {
+      color: variant.color,
+      subImage: subImage,
+      size: variant.size,
+      index: index,
+    }
+  })
   const hanleChangeImg = (img: string, index: number) => {
     setCurrentIndex(index)
     setImg(img)
@@ -106,7 +130,11 @@ export default function ProductDetail({idProduct}: IProductDetailProps) {
             </Box>
           </Grid2>
           <Grid2 xs={6}>
-            <ProductDetailInfo item={product} />
+            <ProductDetailInfo
+              item={product}
+              subImgColor={subUniColorImg}
+              onChangeImg={hanleChangeImg}
+            />
           </Grid2>
         </Grid2>
       </Container>

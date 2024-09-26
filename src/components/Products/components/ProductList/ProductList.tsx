@@ -1,8 +1,7 @@
 import {Product} from '@/model'
-import Grid2 from '@mui/material/Unstable_Grid2'
-import * as React from 'react'
-import ProductItem from '../ProductItem'
 import {Grid} from '@mui/material'
+import Grid2 from '@mui/material/Unstable_Grid2'
+import ProductItem from '../ProductItem'
 
 export interface IProductListProps {
   products: Product[]

@@ -35,7 +35,7 @@ export default function FromBuy({onSubmit}: IFromBuyProps) {
   return (
     <form
       onSubmit={form.handleSubmit(handleSubmit)}
-      style={{display: 'flex', alignItems: 'center', gap: '10px', justifyContent: 'flex-end'}}
+      style={{display: 'flex', alignItems: 'center', gap: '10px'}}
     >
       <QuantityField name='product_quantity' label='Số lượng' form={form} />
       <Button

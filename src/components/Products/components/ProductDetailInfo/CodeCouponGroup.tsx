@@ -15,7 +15,7 @@ export default function CodeCouponGroup({codes}: ICodeCouponGroupProps) {
   }
   return (
     <Box>
-      <Typography fontSize={'1.4rem'}>Mã Giảm Giá</Typography>
+      <Typography fontSize={'1.6rem'}>Mã Giảm Giá</Typography>
       <Box
         mt={2}
         sx={{
