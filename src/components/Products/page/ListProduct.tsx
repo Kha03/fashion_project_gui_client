@@ -1,5 +1,5 @@
 import {Box, Container, Pagination, Paper} from '@mui/material'
-import Grid2 from '@mui/material/Unstable_Grid2'
+import Grid from '@mui/material/Grid2'
 import queryString from 'query-string'
 import {useMemo, useState} from 'react'
 import {useLocation, useNavigate} from 'react-router-dom'
@@ -56,11 +56,11 @@ export default function ListProduct() {
   return (
     <Box sx={{flexGrow: 1}} mt={'65px'}>
       <Container maxWidth={'lg'}>
-        <Grid2 container>
-          <Grid2 xs={2}>
+        <Grid container>
+          <Grid size={{xs: 2}}>
             <ProductFilter onChange={handleFilterChange} />
-          </Grid2>
-          <Grid2 xs={10}>
+          </Grid>
+          <Grid size={{xs: 10}}>
             <Paper sx={{padding: '8px 0', marginTop: '12px'}}>
               <Box marginBottom={2} marginRight={2} display='flex' justifyContent='flex-end'>
                 <SortProductFilter onChange={handleSortChange} />
@@ -80,8 +80,8 @@ export default function ListProduct() {
                 />
               </Box>
             </Paper>
-          </Grid2>
-        </Grid2>
+          </Grid>
+        </Grid>
       </Container>
     </Box>
   )

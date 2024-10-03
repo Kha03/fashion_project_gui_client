@@ -1,5 +1,5 @@
-import {Box, Container, Grid} from '@mui/material'
-import Grid2 from '@mui/material/Unstable_Grid2/Grid2'
+import {Box, Container} from '@mui/material'
+import Grid2 from '@mui/material/Grid2'
 import ProductHeading from '../ProductHeading/index.tsx'
 import ProductItem from '../ProductItem/index.tsx'
 
@@ -151,9 +151,9 @@ export default function MouduleProduct() {
         <ProductHeading title='Sản phẩm mới' subTitle='Cập nhật hàng ngày' link='Xem tất cả' />
         <Grid2 container justifyContent='center' wrap='nowrap' mt={3}>
           {product.map((item, index) => (
-            <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
+            <Grid2 key={index} size={{xs: 12, sm: 6, md: 4, lg: 3}}>
               <ProductItem item={item} />
-            </Grid>
+            </Grid2>
           ))}
         </Grid2>
       </Container>

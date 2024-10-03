@@ -1,6 +1,5 @@
 import {Product} from '@/model'
-import {Grid} from '@mui/material'
-import Grid2 from '@mui/material/Unstable_Grid2'
+import Grid2 from '@mui/material/Grid2'
 import ProductItem from '../ProductItem'
 
 export interface IProductListProps {
@@ -254,9 +253,9 @@ export default function ProductList() {
   return (
     <Grid2 container justifyContent={'flex-start'}>
       {product.map((item, index) => (
-        <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
+        <Grid2 key={index} size={{xs: 12, sm: 6, md: 4, lg: 3}}>
           <ProductItem item={item} size='small' />
-        </Grid>
+        </Grid2>
       ))}
     </Grid2>
   )

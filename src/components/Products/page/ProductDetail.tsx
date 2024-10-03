@@ -1,10 +1,11 @@
 import {Box, Container} from '@mui/material'
-import Grid2 from '@mui/material/Unstable_Grid2'
+import Grid2 from '@mui/material/Grid2'
 import {useEffect, useState} from 'react'
 import ProductImageDetail from '../components/ProductImageDetail'
 import ProductListImgDetail from '../components/ProductListImgDetail'
 import ProductDetailInfo from '../components/ProductDetailInfo'
 import useUniqueProductVariantsByColor from '@/hooks/useUniqueProductVariantsByColor'
+import ProductTabs from '../components/ProductTabs'
 
 export interface IProductDetailProps {
   idProduct: string
@@ -119,7 +120,7 @@ export default function ProductDetail({idProduct}: IProductDetailProps) {
     <Box sx={{flexGrow: 1}} mt={'65px'} pt={'10px'}>
       <Container maxWidth={'lg'}>
         <Grid2 container>
-          <Grid2 xs={6}>
+          <Grid2 size={6}>
             <Box display={'flex'} justifyContent={'space-between'}>
               <ProductListImgDetail
                 listImg={subImages}
@@ -129,7 +130,7 @@ export default function ProductDetail({idProduct}: IProductDetailProps) {
               <ProductImageDetail url={img} onPrev={handlePrev} onNext={handleNext} />
             </Box>
           </Grid2>
-          <Grid2 xs={6}>
+          <Grid2 size={6}>
             <ProductDetailInfo
               item={product}
               subImgColor={subUniColorImg}
@@ -137,6 +138,9 @@ export default function ProductDetail({idProduct}: IProductDetailProps) {
             />
           </Grid2>
         </Grid2>
+        <Box mt={5}>
+          <ProductTabs description={product.description} />
+        </Box>
       </Container>
     </Box>
   )
