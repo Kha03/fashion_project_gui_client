@@ -4,8 +4,9 @@ import TabPanel from '@mui/lab/TabPanel'
 import {Box} from '@mui/material'
 import Tab from '@mui/material/Tab'
 import * as React from 'react'
-import ShippingPolicy from './ShippingPolicy' // Nhập component Chính Sách Giao Hàng
-import ReturnPolicy from './ReturnPolicy' // Nhập component Chính Sách Đổi Trả
+import DescriptionProduct from './DescriptionProduct'
+import ReturnPolicy from './ReturnPolicy'
+import ShippingPolicy from './ShippingPolicy'
 
 export interface IProductTabsProps {
   description: string
@@ -28,7 +29,9 @@ export default function ProductTabs({description}: IProductTabsProps) {
             <Tab label='Chính sách đổi trả' value='3' disableRipple />
           </TabList>
         </Box>
-        <TabPanel value='1'>{description}</TabPanel>
+        <TabPanel value='1'>
+          <DescriptionProduct description={description} />
+        </TabPanel>
         <TabPanel value='2'>
           <ShippingPolicy />
         </TabPanel>

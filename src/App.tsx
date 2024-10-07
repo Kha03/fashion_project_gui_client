@@ -6,6 +6,7 @@ import ListProduct from './components/Products/page/ListProduct'
 import Home from './components/Home/components/Home'
 import themeStyle from './common/themeStyle'
 import ProductDetail from './components/Products/page/ProductDetail'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path='/products' element={<ListProduct />} />
           <Route path='/product' element={<ProductDetail idProduct='1' />} />
         </Routes>
+        <Footer />
       </Box>
     </ThemeProvider>
   )
