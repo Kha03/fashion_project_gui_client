@@ -34,6 +34,19 @@ export default function CopuonDrawer({open, onClose}: ICopuonDrawerProps) {
       description: 'Áp dụng cho tất cả sản phẩm',
       expiry: '31/12/2021',
     },
+    {
+      id: '987655',
+      title: 'Giảm 40%',
+      description: 'Áp dụng cho tất cả sản phẩm',
+      expiry: '31/12/2021',
+    },
+
+    {
+      id: '987657',
+      title: 'Giảm 40%',
+      description: 'Áp dụng cho tất cả sản phẩm',
+      expiry: '31/12/2021',
+    },
   ]
   return (
     <Drawer anchor={'right'} open={open} onClose={onClose}>

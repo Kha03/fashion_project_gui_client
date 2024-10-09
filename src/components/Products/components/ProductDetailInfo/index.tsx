@@ -1,12 +1,23 @@
 import {formatCurrency} from '@/common'
 import CouponCommon from '@/components/Coupon/CouponCommon'
-import {Product} from '@/model'
-import {Avatar, AvatarGroup, Box, Button, Link, Tooltip, Typography} from '@mui/material'
-import CodeCouponGroup from './CodeCouponGroup'
-import {useState} from 'react'
-import FromBuy from '../FormBuy'
-import {useDispatch} from 'react-redux'
 import {addToCart} from '@/features/Cart/CartSlice'
+import {Product} from '@/model'
+import {
+  Alert,
+  Avatar,
+  AvatarGroup,
+  Box,
+  Button,
+  Link,
+  Snackbar,
+  SnackbarCloseReason,
+  Tooltip,
+  Typography,
+} from '@mui/material'
+import {useState} from 'react'
+import {useDispatch} from 'react-redux'
+import FromBuy from '../FormBuy'
+import CodeCouponGroup from './CodeCouponGroup'
 
 export interface IProductDetailInfoProps {
   item: Product
@@ -21,7 +32,23 @@ export default function ProductDetailInfo({
 }: IProductDetailInfoProps) {
   const [currentColor, setCurrentColor] = useState('')
   const [selectedSize, setSelectedSize] = useState(subImgColor?.[0].size)
+  //state snackbar remove cart
+  const [open, setOpen] = useState(false)
 
+  const handleOpenSnack = () => {
+    setOpen(true)
+  }
+
+  const handleCloseSnack = (
+    _event?: React.SyntheticEvent | Event,
+    reason?: SnackbarCloseReason,
+  ) => {
+    if (reason === 'clickaway') {
+      return
+    }
+
+    setOpen(false)
+  }
   const handleSizeClick = (size: string) => {
     setSelectedSize(size)
   }
@@ -30,8 +57,8 @@ export default function ProductDetailInfo({
     onChangeImg && onChangeImg(color, index)
   }
   const dispatch = useDispatch()
+
   const handleCart = (values: {product_quantity: number}) => {
-    console.log(values)
     const productVariantId = item.productVariants?.find(
       (variant) => variant.size === selectedSize && variant.color === currentColor,
     )?.productVariantID
@@ -41,8 +68,8 @@ export default function ProductDetailInfo({
       product: item,
       quantity: values.product_quantity,
     })
-    console.log(action)
     dispatch(action)
+    handleOpenSnack()
   }
   return (
     <Box ml={5} padding={3}>
@@ -140,6 +167,21 @@ export default function ProductDetailInfo({
           </>
         )}
       </Box>
+      <Snackbar
+        open={open}
+        autoHideDuration={1500}
+        onClose={handleCloseSnack}
+        anchorOrigin={{vertical: 'top', horizontal: 'right'}}
+      >
+        <Alert
+          onClose={handleCloseSnack}
+          severity='success'
+          variant='standard'
+          sx={{width: '100%', fontSize: '1.2rem'}}
+        >
+          Đã thêm vào giỏ hàng
+        </Alert>
+      </Snackbar>
     </Box>
   )
 }

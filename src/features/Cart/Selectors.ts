@@ -1,7 +1,7 @@
+import {RootState} from '@/app/store'
 import {createSelector} from '@reduxjs/toolkit'
-import {CartState} from './CartSlice'
 
-const cartItemsSelector = (state: CartState) => state.cart
+const cartItemsSelector = (state: RootState) => state.cart.cart
 export const countItemsSelector = createSelector(cartItemsSelector, (cart) =>
   cart.reduce((count, item) => count + item.quantity, 0),
 )

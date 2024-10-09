@@ -1,6 +1,6 @@
 import store from '@/app/store'
 import {logout} from '@/features/Auth/userSlice'
-import {Menu, MenuItem} from '@mui/material'
+import {Badge, IconButton, Menu, MenuItem} from '@mui/material'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -10,7 +10,9 @@ import React, {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import LoginDialog from './components/LoginDialog'
 import SubMenu from './components/SubMenu/SubMenu'
-
+import {countItemsSelector} from '@/features/Cart/Selectors'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import {useNavigate} from 'react-router-dom'
 const MenuItems = [
   {
     id: '1',
@@ -92,11 +94,16 @@ const MenuItems = [
 
 export default function Header() {
   const [openDialog, setOpenDialog] = useState(false)
+  const negative = useNavigate()
   const currentUser = useSelector((state: ReturnType<typeof store.getState>) => state.user.current)
   const islogin = !!currentUser.username
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const dispatch = useDispatch()
+  const cartItemsCount = useSelector(countItemsSelector)
+  const handleCartClick = () => {
+    negative('/cart')
+  }
   const handleLogout = () => {
     dispatch(logout())
   }
@@ -145,6 +152,11 @@ export default function Header() {
             </ul> */}
             <SubMenu items={MenuItems} />
           </Box>
+          <IconButton onClick={handleCartClick}>
+            <Badge badgeContent={cartItemsCount} color='info'>
+              <ShoppingCartIcon color='primary' fontSize='large' />
+            </Badge>
+          </IconButton>
           {islogin ? (
             <>
               <Typography

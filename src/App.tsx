@@ -1,12 +1,13 @@
 import {Box, ThemeProvider} from '@mui/material'
-import './App.scss'
-import Header from './components/Header'
 import {Route, Routes} from 'react-router-dom'
-import ListProduct from './components/Products/page/ListProduct'
-import Home from './components/Home/components/Home'
+import './App.scss'
 import themeStyle from './common/themeStyle'
-import ProductDetail from './components/Products/page/ProductDetail'
+import Cart from './components/Cart/page/Cart'
 import Footer from './components/Footer'
+import Header from './components/Header'
+import Home from './components/Home/components/Home'
+import ListProduct from './components/Products/page/ListProduct'
+import ProductDetail from './components/Products/page/ProductDetail'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path='*' element={<Home />} />
           <Route path='/products' element={<ListProduct />} />
           <Route path='/product' element={<ProductDetail idProduct='1' />} />
+          <Route path='/cart' element={<Cart />} />
         </Routes>
         <Footer />
       </Box>
